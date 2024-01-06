@@ -1,7 +1,9 @@
 import React from 'react';
+import Header from '../components/header';
 import showStore from '../stores/showStore';
 import { useParams } from 'react-router-dom';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 const data = [
     {
         name: 'Page A',
@@ -48,9 +50,6 @@ const data = [
 ];
 
 const Show = () => {
-
-    
-
     const store = showStore();
     const routeParams = useParams();
     console.log(routeParams);
@@ -59,10 +58,44 @@ const Show = () => {
         store.fetchData(routeParams.id)
     }, [])
 
+    if(!store.data) return <></>;
+
     return (
         <div>
+            <Header back/>
+            <header>
+                {console.log(store)}
+                <img src={store.data.image.large} />
+                <h2>
+                    {(store.data.name)} {(store.data.symbol)}
+                </h2>
 
-                <AreaChart
+                <div>
+                    <h3>Market cap rank</h3>
+                    <span>{store.data.market_cap_rank}</span>
+                </div>
+
+                <div>
+                    <h3>24h high</h3>
+                    <span>{store.data.market_data.high_24h.usd}</span>
+                </div>
+
+                <div>
+                    <h3>24h low</h3>
+                    <span>{store.data.market_data.low_24h.usd}</span>
+                </div>
+
+                <div>
+                    <h3>Coins in circulation</h3>
+                    <span>{store.data.market_data.circulating_supply}</span>
+                </div>
+
+                <div>
+                    <h3>Current price</h3>
+                    <span>{store.data.market_data.current_price.usd}</span>
+                </div>
+            </header>
+            <AreaChart
                 width={500}
                 height={400}
                 data={store.chartData}
@@ -72,13 +105,13 @@ const Show = () => {
                     left: 0,
                     bottom: 0,
                 }}
-                >
+            >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="Date" />
                 <YAxis />
                 <Tooltip />
                 <Area type="monotone" dataKey="Price" stroke="#8884d8" fill="#8884d8" />
-                </AreaChart>
+            </AreaChart>
         </div>
     )
 }

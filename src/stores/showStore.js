@@ -4,21 +4,28 @@ import debounce from '../helpers/debounce';
 
 const showStore = create((set) => ({
     chartData: [],
-    fetchData: async(id) => {
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=eur&days=7`)
-        console.log(response.data)
+    data: null,
 
-        const chartData = response.data.prices.map((price) => {
+    fetchData: async (id) => {
+        const [graphResponse, dataResponse] = await Promise.all([
+            axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=eur&days=90`),
+            axios.get(`https://api.coingecko.com/api/v3/coins/${id}?market_data=true`),
+        ]);
+        
+        
+        const chartData = graphResponse.data.prices.map((price) => {
             const [timestamp, marketPrice] = price;
+            const date = new Date(timestamp).toLocaleDateString('en-us');
             return {
 
-                Date: timestamp,
+                Date: date,
                 Price: marketPrice
                 
             };
             
         })
-        set({chartData})
+        console.log(graphResponse.data);
+        set({chartData, data:dataResponse.data})
     },
 }))
 
