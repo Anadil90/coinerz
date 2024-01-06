@@ -35,6 +35,19 @@
     }
 }
 
+input[type='text'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    display: block;
+    width: 100%;
+    border-radius: 0;
+}
+
 a {
     text-decoration: none;
 }
@@ -50,4 +63,37 @@ body {
     position: absolute;
     top: 50%;
     margin-top: -12px;
+}
+
+.search-coin {
+    padding: 40px 0;
+    text-align: center;
+
+    h3 {
+        font-size: 30px;
+        margin: 19px;
+    }
+
+    input {
+        border: 1px solid #ddf;
+        border-radius: 9px;
+        padding: 0 23px;
+        line-height: 50px;
+    }
+}
+
+.home-crypto-coins {
+    
+    h3 {
+        font-size: 30px;
+        margin: 19px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+}
+
+.trending-heading {
+    text-align: center;
+    margin-bottom: 15px;
 }

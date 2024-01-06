@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import homeStore from '../stores/homeStore';
 import Header from '../components/header';
+import ListCoins from '../components/ListCoins';
 
 const Home = () => {
     const store = homeStore(); 
@@ -14,19 +14,26 @@ const Home = () => {
     <div>
         <Header />
         <header className='search-coin'>
-            <h3>Search for a coin</h3>
-            <input type='text' value={store.query} onChange={store.setQuery}/>
+            <div className='width'>
+                <h3>Search for a coin</h3>
+                <input type='text' value={store.query} onChange={store.setQuery}/> 
+            </div>
+            
         </header>
-        
-        {
-            store.coins.map((coin) => {
+        <div className='home-crypto-coins'>
+            <div className='width'>
+            <h2 className='trending-heading'>Trending Crypto Coins</h2>
+            {
+                store.coins.map((coin) => {
                 return (
-                    <div key={coin.id}>
-                        <Link to={`/${coin.id}`}>{coin.name}</Link>
-                    </div>
-                )
-            })
-        }
+                        <ListCoins key={coin.id} coin={coin} />
+                    )
+                })
+            }     
+            </div>
+           
+        </div>
+        
     </div>
   )
 }
