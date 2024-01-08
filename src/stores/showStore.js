@@ -6,6 +6,10 @@ const showStore = create((set) => ({
     chartData: [],
     data: null,
 
+    resetChartData: () => {
+        set({chartData: [], data: null}) //clear graph data to remove flash on reloading
+    },
+
     fetchData: async (id) => {
         const [graphResponse, dataResponse] = await Promise.all([
             axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=eur&days=90`),

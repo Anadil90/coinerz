@@ -52,7 +52,10 @@ a {
     text-decoration: none;
 }
 
-
+img {
+    max-width: 100%;
+    display: block;
+}
 
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -83,7 +86,7 @@ body {
 }
 
 .home-crypto-coins {
-    
+    padding-bottom: 60px;
     h3 {
         font-size: 30px;
         margin: 19px;
@@ -93,7 +96,131 @@ body {
 
 }
 
+.home-cryptos-list {
+    border-top: 1px solid #ddf;
+}
+
 .trending-heading {
     text-align: center;
     margin-bottom: 15px;
 }
+
+.home-crypto {
+    a {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        gap: 30px;
+        border-bottom: 1px solid #ddd; 
+    }
+    
+
+    span {
+        display: block;
+    }
+}
+
+.home-crypto-image {
+    width: 50px;
+}
+
+.home-crypto-name {
+    flex: 1;
+    font-size: 19px;
+    color: #00a;
+    font-weight: 600;
+}
+
+.home-crypto-btc{
+    color: #111;
+    font-size: 17px;
+
+    img {
+        width: 20px;
+        display: inline-block;
+        margin: -3px 5px 0 0;
+        vertical-align: middle;
+    }
+}
+
+.home-crypto-usd{
+    color: #656;
+    font-size: 11px;
+}
+
+//360deg rotating animation
+@keyframes rotating {
+    from {
+        transform: translateY(-50%) rotate(0deg)
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg)
+    }
+  }
+
+.home-input-search {
+    position: relative;
+
+    svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 23px;
+        animation: 2s rotating infinite linear;
+        opacity: 0;
+        transition: 0.2s opacity;
+    }
+
+    &.searching svg {//hide spinner when class is toggled through state
+        opacity: 1;
+    }
+}
+
+.show-header {
+    padding: 40px 0;
+    text-align: center;
+
+    img {
+        width: 75px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-top: 11px;
+    }
+}
+
+.show-graph {
+    height: 200px;
+    width: 100%;
+}
+
+.chart-details {
+    padding-top: 35px;
+    padding-bottom: 55px;
+
+    h2 {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 15px;
+    }    
+}
+
+.show-details-span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #ffa;
+
+    span {
+        color: #669;
+    }
+}
+
+
+
+
+
